@@ -26,6 +26,7 @@
         <dependency>
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-support</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

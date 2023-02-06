@@ -9,12 +9,12 @@ class Response<T> {
     /**
      * 返回编码
      */
-    var code: Int? = 200
+    var code: Int? = 0
 
     /**
      * 返回消息
      */
-    var message: String? = ""
+    var message: String? = "ok"
 
     /**
      * 返回数据
