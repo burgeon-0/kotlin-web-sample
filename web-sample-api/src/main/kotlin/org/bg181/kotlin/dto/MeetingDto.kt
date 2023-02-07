@@ -32,6 +32,6 @@ class MeetingDto : Serializable {
     /**
      * 结束时间
      */
-    val endTime: Date? = null
+    var endTime: Date? = null
 
 }

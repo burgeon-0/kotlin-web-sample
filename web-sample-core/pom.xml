@@ -23,10 +23,10 @@
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-sample-api</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-support</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

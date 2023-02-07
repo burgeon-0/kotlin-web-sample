@@ -4,6 +4,7 @@ import org.bg181.kotlin.api.MeetingService
 import org.bg181.kotlin.dto.MeetingDto
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import java.util.*
 
 /**
  * @author Sam Lu
@@ -15,7 +16,10 @@ class MeetingServiceImpl : MeetingService {
     private val logger = LoggerFactory.getLogger(MeetingService::class.java)
 
     override fun createMeeting(meeting: MeetingDto) {
-        logger.info("CreateMeeting: ${meeting.title}, ${meeting.content}")
+        logger.info("CreateMeeting => title: ${meeting.title}, content: ${meeting.content}")
+        meeting.meetingNo = "1"
+        meeting.startTime = Date()
+        meeting.endTime = Date()
     }
 
     override fun updateMeeting(meeting: MeetingDto) {

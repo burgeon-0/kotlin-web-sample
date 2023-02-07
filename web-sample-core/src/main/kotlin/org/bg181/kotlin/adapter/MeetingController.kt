@@ -5,6 +5,7 @@ import org.bg181.kotlin.dto.MeetingDto
 import org.bg181.kotlin.rest.Response
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -23,9 +24,11 @@ class MeetingController {
      * 预约会议
      */
     @PostMapping
-    fun createMeeting(meeting: MeetingDto): Response<MeetingDto> {
+    fun createMeeting(@RequestBody meeting: MeetingDto): Response<MeetingDto> {
         meetingService.createMeeting(meeting)
-        return Response()
+        return Response<MeetingDto>().apply {
+            data = meeting
+        }
     }
 
 }
