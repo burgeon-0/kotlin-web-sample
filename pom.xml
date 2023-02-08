@@ -6,8 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.8</version>
     </parent>
 
     <groupId>org.bg181.kotlin</groupId>
@@ -25,6 +24,7 @@
     </modules>
 
     <properties>
+        <kotlin.version>1.8.0</kotlin.version>
         <redisson-spring-boot-starter.version>3.17.4</redisson-spring-boot-starter.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool-all.version>5.7.22</hutool-all.version>

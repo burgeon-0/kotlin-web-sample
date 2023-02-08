@@ -4,10 +4,7 @@ import org.bg181.kotlin.api.MeetingService
 import org.bg181.kotlin.dto.MeetingDto
 import org.bg181.kotlin.rest.Response
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 /**
  * @author Sam Lu
@@ -29,6 +26,26 @@ class MeetingController {
         return Response<MeetingDto>().apply {
             data = meeting
         }
+    }
+
+    /**
+     * 修改会议
+     */
+    @PutMapping
+    fun updateMeeting(@RequestBody meeting: MeetingDto): Response<MeetingDto> {
+        meetingService.updateMeeting(meeting)
+        return Response<MeetingDto>().apply {
+            data = meeting
+        }
+    }
+
+    /**
+     * 删除会议
+     */
+    @DeleteMapping("/{meetingNo}")
+    fun deleteMeeting(@PathVariable meetingNo: String): Response<Unit> {
+        meetingService.deleteMeeting(meetingNo)
+        return Response<Unit>()
     }
 
 }

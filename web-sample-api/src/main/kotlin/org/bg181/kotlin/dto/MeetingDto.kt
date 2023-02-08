@@ -7,31 +7,31 @@ import java.util.*
  * @author Sam Lu
  * @date 2023/02/04
  */
-class MeetingDto : Serializable {
+data class MeetingDto(
 
     /**
      * 会议编号
      */
-    var meetingNo: String? = null
+    var meetingNo: String? = null,
 
     /**
      * 会议主题
      */
-    var title: String? = null
+    var title: String? = null,
 
     /**
      * 会议内容
      */
-    var content: String? = null
+    var content: String? = null,
 
     /**
      * 开始时间
      */
-    var startTime: Date? = null
+    var startTime: Date? = null,
 
     /**
      * 结束时间
      */
     var endTime: Date? = null
 
-}
+) : Serializable

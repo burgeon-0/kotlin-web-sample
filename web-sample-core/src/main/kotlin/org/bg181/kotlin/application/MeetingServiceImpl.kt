@@ -15,19 +15,21 @@ class MeetingServiceImpl : MeetingService {
 
     private val logger = LoggerFactory.getLogger(MeetingService::class.java)
 
-    override fun createMeeting(meeting: MeetingDto) {
-        logger.info("CreateMeeting => title: ${meeting.title}, content: ${meeting.content}")
-        meeting.meetingNo = "1"
-        meeting.startTime = Date()
-        meeting.endTime = Date()
+    override fun createMeeting(meetingDto: MeetingDto) {
+        logger.info("CreateMeeting => ${meetingDto}")
+        meetingDto.meetingNo = "1"
+        meetingDto.startTime = Date()
+        meetingDto.endTime = Date()
     }
 
-    override fun updateMeeting(meeting: MeetingDto) {
-        TODO("Not yet implemented")
+    override fun updateMeeting(meetingDto: MeetingDto) {
+        logger.info("UpdateMeeting => ${meetingDto}")
+        meetingDto.startTime = Date()
+        meetingDto.endTime = Date()
     }
 
     override fun deleteMeeting(meetingNo: String) {
-        TODO("Not yet implemented")
+        logger.info("DeleteMeeting => ${meetingNo}")
     }
 
 }
