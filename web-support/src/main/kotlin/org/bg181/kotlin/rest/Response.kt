@@ -3,6 +3,8 @@ package org.bg181.kotlin.rest
 import java.io.Serializable
 
 /**
+ * 统一返回
+ *
  * @author Sam Lu
  * @date 2023/02/04
  */

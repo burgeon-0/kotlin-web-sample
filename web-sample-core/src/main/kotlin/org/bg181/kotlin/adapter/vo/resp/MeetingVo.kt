@@ -1,15 +1,15 @@
-package org.bg181.kotlin.dto
+package org.bg181.kotlin.adapter.vo.resp
 
 import java.io.Serializable
 import java.util.*
 
 /**
- * 会议实体
+ * 会议返回数据
  *
- * @author Sam Lu
- * @date 2023/02/04
+ * @author lxc
+ * @date 2023/02/09
  */
-data class MeetingDto(
+data class MeetingVo(
 
     /**
      * 会议编号

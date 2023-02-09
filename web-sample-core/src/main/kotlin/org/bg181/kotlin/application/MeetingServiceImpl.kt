@@ -15,17 +15,15 @@ class MeetingServiceImpl : MeetingService {
 
     private val logger = LoggerFactory.getLogger(MeetingService::class.java)
 
-    override fun createMeeting(meetingDto: MeetingDto) {
+    override fun createMeeting(meetingDto: MeetingDto): MeetingDto {
         logger.info("CreateMeeting => ${meetingDto}")
         meetingDto.meetingNo = "1"
-        meetingDto.startTime = Date()
-        meetingDto.endTime = Date()
+        return meetingDto
     }
 
-    override fun updateMeeting(meetingDto: MeetingDto) {
+    override fun updateMeeting(meetingDto: MeetingDto): MeetingDto {
         logger.info("UpdateMeeting => ${meetingDto}")
-        meetingDto.startTime = Date()
-        meetingDto.endTime = Date()
+        return meetingDto
     }
 
     override fun deleteMeeting(meetingNo: String) {

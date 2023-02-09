@@ -19,11 +19,13 @@
     <description>Kotlin Web Sample Core</description>
 
     <dependencies>
+        <!-- web sample api -->
         <dependency>
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-sample-api</artifactId>
         </dependency>
 
+        <!-- web support -->
         <dependency>
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-support</artifactId>
