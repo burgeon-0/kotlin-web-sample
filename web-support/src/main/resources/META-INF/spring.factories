@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.bg181.kotlin.support.mybatis.plus.config.MybatisPlusPluginConfig,\
+  org.bg181.kotlin.support.mybatis.plus.handler.CustomMetaObjectHandler

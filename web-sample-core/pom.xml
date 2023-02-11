@@ -30,6 +30,18 @@
             <groupId>org.bg181.kotlin</groupId>
             <artifactId>web-support</artifactId>
         </dependency>
+
+        <!-- mybatis plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
