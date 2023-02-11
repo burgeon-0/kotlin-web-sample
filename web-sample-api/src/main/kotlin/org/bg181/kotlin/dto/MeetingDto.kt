@@ -1,5 +1,6 @@
 package org.bg181.kotlin.dto
 
+import org.bg181.kotlin.enums.MeetingStatus
 import java.io.Serializable
 import java.util.*
 
@@ -34,6 +35,11 @@ data class MeetingDto(
     /**
      * 结束时间
      */
-    var endTime: Date? = null
+    var endTime: Date? = null,
+
+    /**
+     * 会议状态
+     */
+    var status: MeetingStatus? = null
 
 ) : Serializable
