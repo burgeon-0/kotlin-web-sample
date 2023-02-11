@@ -5,7 +5,9 @@ import org.bg181.kotlin.core.web.vo.param.MeetingCreateParamVo
 import org.bg181.kotlin.core.web.vo.param.MeetingUpdateParamVo
 import org.bg181.kotlin.core.web.vo.resp.MeetingVo
 import org.bg181.kotlin.api.MeetingService
-import org.bg181.kotlin.support.rest.Response
+import org.bg181.kotlin.dto.base.PageParam
+import org.bg181.kotlin.dto.base.PageResp
+import org.bg181.kotlin.support.definition.dto.Resp
 import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -32,10 +34,10 @@ class MeetingController {
     @PostMapping
     fun createMeeting(
         @Valid @RequestBody meetingCreateParamVo: MeetingCreateParamVo
-    ): Response<MeetingVo> {
+    ): Resp<MeetingVo> {
         val inMeetingDto = meetingConverter.toMeetingDto(meetingCreateParamVo);
         val outMeetingDto = meetingService.createMeeting(inMeetingDto)
-        return Response<MeetingVo>().apply {
+        return Resp<MeetingVo>().apply {
             data = meetingConverter.toMeetingVo(outMeetingDto)
         }
     }
@@ -47,12 +49,12 @@ class MeetingController {
     fun updateMeeting(
         @PathVariable meetingNo: String,
         @Valid @RequestBody meetingUpdateParamVo: MeetingUpdateParamVo
-    ): Response<MeetingVo> {
+    ): Resp<MeetingVo> {
         val inMeetingDto = meetingConverter.toMeetingDto(meetingUpdateParamVo).apply {
             this.meetingNo = meetingNo
         };
         val outMeetingDto = meetingService.updateMeeting(inMeetingDto)
-        return Response<MeetingVo>().apply {
+        return Resp<MeetingVo>().apply {
             data = meetingConverter.toMeetingVo(outMeetingDto)
         }
     }
@@ -61,9 +63,19 @@ class MeetingController {
      * 删除会议
      */
     @DeleteMapping("/{meetingNo}")
-    fun deleteMeeting(@PathVariable meetingNo: String): Response<Unit> {
+    fun deleteMeeting(@PathVariable meetingNo: String): Resp<Unit> {
         meetingService.deleteMeeting(meetingNo)
-        return Response<Unit>()
+        return Resp<Unit>()
+    }
+
+    /**
+     * 分页查询会议
+     */
+    @GetMapping
+    fun pageMeetings(@ModelAttribute pageParam: PageParam): Resp<PageResp<MeetingVo>?> {
+        return Resp<PageResp<MeetingVo>?>().apply {
+            this.data = meetingConverter.toPageMeetingVos(meetingService.pageMeetings(pageParam))
+        }
     }
 
 }

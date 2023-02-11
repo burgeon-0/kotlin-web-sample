@@ -1,11 +1,15 @@
 package org.bg181.kotlin.core.service.impl
 
 import cn.hutool.core.util.IdUtil
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.bg181.kotlin.api.MeetingService
 import org.bg181.kotlin.core.dao.adapter.MeetingAdapter
+import org.bg181.kotlin.core.dao.entity.Meeting
 import org.bg181.kotlin.core.service.converter.ServiceMeetingConverter
 import org.bg181.kotlin.core.web.converter.WebMeetingConverter
 import org.bg181.kotlin.dto.MeetingDto
+import org.bg181.kotlin.dto.base.PageParam
+import org.bg181.kotlin.dto.base.PageResp
 import org.bg181.kotlin.enums.MeetingStatus
 import org.mapstruct.factory.Mappers
 import org.slf4j.LoggerFactory
@@ -61,6 +65,23 @@ class MeetingServiceImpl : MeetingService {
         logger.info("DeleteMeeting => ${meetingNo}")
 
         meetingAdapter.removeByMeetingNo(meetingNo.toLong())
+    }
+
+    override fun pageMeetings(pageParam: PageParam): PageResp<MeetingDto> {
+        logger.info("PageMeetings => ${pageParam}")
+
+        val pageResult = meetingAdapter.pageRecords(Page<Meeting>().apply {
+            this.current = pageParam.pageNo?.toLong()
+            this.size = pageParam.pageSize?.toLong()
+        })
+
+        return PageResp<MeetingDto>().apply {
+            this.pageNo = pageResult.current?.toInt()
+            this.pageSize = pageResult.size?.toInt()
+            this.total = pageResult.total?.toInt()
+            this.totalPage = pageResult.pages?.toInt()
+            this.data = meetingConverter.toMeetingDtos(pageResult.records)
+        }
     }
 
 }

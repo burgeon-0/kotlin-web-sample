@@ -44,4 +44,9 @@ abstract class ServiceMeetingConverter {
         meetingDto.status = MeetingStatus.valueOf(meeting.status?.toInt() ?: -1)
     }
 
+    /**
+     * List<Meeting> to List<NotebookBo>
+     */
+    abstract fun toMeetingDtos(meetings: List<Meeting>): List<MeetingDto>
+
 }

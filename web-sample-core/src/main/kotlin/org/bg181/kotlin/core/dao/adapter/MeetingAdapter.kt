@@ -1,5 +1,6 @@
 package org.bg181.kotlin.core.dao.adapter
 
+import com.baomidou.mybatisplus.core.metadata.IPage
 import com.baomidou.mybatisplus.extension.service.IService
 import org.bg181.kotlin.core.dao.entity.Meeting
 
@@ -25,5 +26,10 @@ interface MeetingAdapter : IService<Meeting> {
      * 根据会议编号，删除会议
      */
     fun removeByMeetingNo(meetingNo: Long)
+
+    /**
+     * 分页查询会议
+     */
+    fun pageRecords(page: IPage<Meeting>): IPage<Meeting>
 
 }

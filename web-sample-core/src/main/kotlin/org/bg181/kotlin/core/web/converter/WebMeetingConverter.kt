@@ -1,9 +1,11 @@
 package org.bg181.kotlin.core.web.converter
 
+import org.bg181.kotlin.core.dao.entity.Meeting
 import org.bg181.kotlin.core.web.vo.param.MeetingCreateParamVo
 import org.bg181.kotlin.core.web.vo.param.MeetingUpdateParamVo
 import org.bg181.kotlin.core.web.vo.resp.MeetingVo
 import org.bg181.kotlin.dto.MeetingDto
+import org.bg181.kotlin.dto.base.PageResp
 import org.mapstruct.AfterMapping
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -37,6 +39,25 @@ abstract class WebMeetingConverter {
     @AfterMapping
     protected fun afterToMeetingVo(meetingDto: MeetingDto, @MappingTarget meetingVo: MeetingVo) {
         meetingVo.status = meetingDto.status?.ordinal
+    }
+
+    /**
+     * PageResp<MeetingDto> to PageResp<MeetingVo>
+     *
+     * @param pageResp
+     * @return
+     */
+    @Mapping(target = "data", ignore = true)
+    abstract fun toPageMeetingVos(pageResp: PageResp<MeetingDto>): PageResp<MeetingVo>
+
+    @AfterMapping
+    protected fun afterToPageMeetingVos(
+        pageResp: PageResp<MeetingDto>,
+        @MappingTarget newPageResp: PageResp<MeetingVo>
+    ) {
+        newPageResp.data = pageResp.data?.map { it ->
+            toMeetingVo(it)
+        }
     }
 
 }

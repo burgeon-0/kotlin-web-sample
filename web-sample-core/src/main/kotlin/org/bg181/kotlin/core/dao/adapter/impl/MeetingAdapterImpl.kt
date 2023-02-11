@@ -1,5 +1,6 @@
 package org.bg181.kotlin.core.dao.adapter.impl
 
+import com.baomidou.mybatisplus.core.metadata.IPage
 import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.kotlin.KtUpdateWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
@@ -31,11 +32,17 @@ open class MeetingAdapterImpl : ServiceImpl<MeetingMapper, Meeting>(), MeetingAd
     }
 
     override fun removeByMeetingNo(meetingNo: Long) {
-        val meetingId = this.getIdByMeetingNo(meetingNo)
+        val meetingId = this.getIdByMeetingNo(meetingNo) ?: return
         val meeting = Meeting().apply {
             this.id = meetingId
         }
+        // 需要注意此处有坑：如果 delete 时传入的参数不是 entity，update_time 将得不到更新
         super.baseMapper.deleteById(meeting)
+    }
+
+    override fun pageRecords(page: IPage<Meeting>): IPage<Meeting> {
+        val queryWrapper = KtQueryWrapper(Meeting())
+        return super.baseMapper.selectPage(page, queryWrapper);
     }
 
 }

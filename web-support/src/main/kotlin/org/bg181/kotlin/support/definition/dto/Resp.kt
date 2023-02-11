@@ -1,4 +1,4 @@
-package org.bg181.kotlin.support.rest
+package org.bg181.kotlin.support.definition.dto
 
 import java.io.Serializable
 
@@ -8,7 +8,7 @@ import java.io.Serializable
  * @author Sam Lu
  * @date 2023/02/04
  */
-data class Response<T>(
+data class Resp<T>(
 
     /**
      * 返回编码
