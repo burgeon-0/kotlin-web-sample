@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 /**
+ * 会议服务 实现类
+ *
  * @author Sam Lu
  * @date 2023/02/04
  */

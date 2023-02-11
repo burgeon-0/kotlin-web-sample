@@ -1,9 +1,8 @@
-package org.bg181.kotlin.common
+package org.bg181.kotlin.common.extend
 
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.BeanWrapperImpl
-import org.springframework.cglib.beans.BeanCopier
 import java.beans.PropertyDescriptor
 
 /**
@@ -29,7 +28,6 @@ import java.beans.PropertyDescriptor
  * 1. 安全性问题：对于目标对象的不可变[val]属性，属性复制会失效。为解决此问题，当目标对象存在不可变[val]属性时，函数将抛出异常。
  * （其核心问题在于，对于不可变[val]属性，复制不起作用，如果开发人员不清楚，将带来巨大的安全隐患。）
  * 2. 性能问题：[FieldCopyExtensionBenchmarkTest]
- * 如有其他看法，欢迎补充。
  * </p>
  */
 class FieldCopyExtension
@@ -54,7 +52,7 @@ fun <T : Any> Any.convert(clazz: Class<T>, vararg ignoreProperties: String): T {
  * @return 转换后的对象
  */
 fun <T : Any> Any.convert(clazz: Class<T>, ignoreNullValue: Boolean, vararg ignoreProperties: String): T {
-    val obj = clazz.newInstance()
+    val obj = clazz.getDeclaredConstructor().newInstance()
     checkIfExistImmutableField(obj)
     var ignores = when (ignoreNullValue) {
         true -> getNullPropertyNames(this)

@@ -1,9 +1,7 @@
-package org.bg181.kotlin.common
+package org.bg181.kotlin.common.extend
 
-import org.bg181.kotlin.common.convert
-import org.bg181.kotlin.common.fillBy
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
+import org.junit.Assert.assertThrows
+import org.junit.Test
 import org.slf4j.LoggerFactory
 import java.io.Serializable
 
@@ -65,18 +63,17 @@ class FieldCopyExtensionTest {
         assert(student5.name == "lucy" && student5.age == null)
 
         // Teacher 含有 val 属性，会抛出异常
-        // TODO 疑问：为何这里抛出的异常行数与真实代码的行数对不上，assert 抛出异常时却可以对上的？
-        assertThrows<Exception> {
+        assertThrows<IllegalAccessException>(IllegalAccessException::class.java, {
             val teacher = person.convert(Teacher::class.java)
             logger.info("teacher: $teacher")
-        }
+        })
         // Teacher 含有 val 属性，会抛出异常
-        assertThrows<Exception> {
+        assertThrows<IllegalAccessException>(IllegalAccessException::class.java, {
             val teacher2 = Teacher()
             logger.info("teacher2: $teacher2")
             teacher2.fillBy(person)
             logger.info("teacher2: $teacher2")
-        }
+        })
     }
 
     /**
@@ -124,7 +121,7 @@ class FieldCopyExtensionTest {
     }
 
     /**
-     * TODO 疑问：为何这里的 data class 一定要有无参构造函数，study-sample-server 的 data class 没有无参构造函数也可以跑成功？
+     * TODO 疑问：为何这里的 data class 一定要有无参构造函数，独立项目中的 data class 没有无参构造函数也可以跑成功？
      */
     data class Person(var name: String?, var age: Int?) : Serializable {
         constructor() : this(null, null)

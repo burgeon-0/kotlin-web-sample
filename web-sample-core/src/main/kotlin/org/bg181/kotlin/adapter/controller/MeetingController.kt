@@ -5,19 +5,23 @@ import org.bg181.kotlin.adapter.vo.param.MeetingCreateParamVo
 import org.bg181.kotlin.adapter.vo.param.MeetingUpdateParamVo
 import org.bg181.kotlin.adapter.vo.resp.MeetingVo
 import org.bg181.kotlin.api.MeetingService
-import org.bg181.kotlin.dto.MeetingDto
 import org.bg181.kotlin.rest.Response
+import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 /**
+ * 会议控制器
+ *
  * @author Sam Lu
  * @date 2023/02/04
  */
 @RestController
 @RequestMapping("/api/meetings")
 class MeetingController {
+
+    private val meetingConverter = Mappers.getMapper(MeetingConverter::class.java)
 
     @Autowired
     private lateinit var meetingService: MeetingService
@@ -29,10 +33,10 @@ class MeetingController {
     fun createMeeting(
         @Valid @RequestBody meetingCreateParamVo: MeetingCreateParamVo
     ): Response<MeetingVo> {
-        val inMeetingDto = MeetingConverter.toMeetingDto(meetingCreateParamVo);
+        val inMeetingDto = meetingConverter.toMeetingDto(meetingCreateParamVo);
         val outMeetingDto = meetingService.createMeeting(inMeetingDto)
         return Response<MeetingVo>().apply {
-            data = MeetingConverter.toMeetingVo(outMeetingDto)
+            data = meetingConverter.toMeetingVo(outMeetingDto)
         }
     }
 
@@ -44,12 +48,12 @@ class MeetingController {
         @PathVariable meetingNo: String,
         @Valid @RequestBody meetingUpdateParamVo: MeetingUpdateParamVo
     ): Response<MeetingVo> {
-        val inMeetingDto = MeetingConverter.toMeetingDto(meetingUpdateParamVo).apply {
+        val inMeetingDto = meetingConverter.toMeetingDto(meetingUpdateParamVo).apply {
             this.meetingNo = meetingNo
         };
         val outMeetingDto = meetingService.updateMeeting(inMeetingDto)
         return Response<MeetingVo>().apply {
-            data = MeetingConverter.toMeetingVo(outMeetingDto)
+            data = meetingConverter.toMeetingVo(outMeetingDto)
         }
     }
 
