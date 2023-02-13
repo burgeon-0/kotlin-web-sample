@@ -45,7 +45,7 @@ abstract class ServiceMeetingConverter {
     }
 
     /**
-     * List<Meeting> to List<NotebookBo>
+     * List<Meeting> to List<MeetingDto>
      */
     abstract fun toMeetingDtos(meetings: List<Meeting>): List<MeetingDto>
 
