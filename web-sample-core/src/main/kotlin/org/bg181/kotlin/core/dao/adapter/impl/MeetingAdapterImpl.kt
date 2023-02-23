@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository
  * @date 2023/02/11
  */
 @Repository
-open class MeetingAdapterImpl : ServiceImpl<MeetingMapper, Meeting>(), MeetingAdapter {
+class MeetingAdapterImpl : ServiceImpl<MeetingMapper, Meeting>(), MeetingAdapter {
 
     override fun getIdByMeetingNo(meetingNo: Long): Int? {
         val queryWrapper = KtQueryWrapper(Meeting())

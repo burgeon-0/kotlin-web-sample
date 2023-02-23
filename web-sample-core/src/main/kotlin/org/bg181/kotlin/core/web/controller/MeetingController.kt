@@ -5,9 +5,9 @@ import org.bg181.kotlin.core.web.vo.param.MeetingCreateParamVo
 import org.bg181.kotlin.core.web.vo.param.MeetingUpdateParamVo
 import org.bg181.kotlin.core.web.vo.resp.MeetingVo
 import org.bg181.kotlin.api.MeetingService
-import org.bg181.kotlin.dto.base.PageParam
-import org.bg181.kotlin.dto.base.PageResp
-import org.bg181.kotlin.support.definition.dto.Resp
+import org.bg181.kotlin.support.definition.model.PageReq
+import org.bg181.kotlin.support.definition.model.PageResp
+import org.bg181.kotlin.support.definition.model.Resp
 import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -72,9 +72,9 @@ class MeetingController {
      * 分页查询会议
      */
     @GetMapping
-    fun pageMeetings(@ModelAttribute pageParam: PageParam): Resp<PageResp<MeetingVo>?> {
+    fun pageMeetings(@ModelAttribute pageResp: PageReq): Resp<PageResp<MeetingVo>?> {
         return Resp<PageResp<MeetingVo>?>().apply {
-            this.data = meetingConverter.toPageMeetingVos(meetingService.pageMeetings(pageParam))
+            this.data = meetingConverter.toPageMeetingVos(meetingService.pageMeetings(pageResp))
         }
     }
 

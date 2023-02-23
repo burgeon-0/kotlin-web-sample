@@ -39,7 +39,7 @@ enum class MeetingStatus {
          * 获取会议状态枚举
          */
         fun valueOf(ordinal: Int): MeetingStatus? {
-            return values().find { it.ordinal == ordinal } ?: null
+            return values().find { it.ordinal == ordinal }
         }
 
     }

@@ -5,7 +5,7 @@ import org.bg181.kotlin.core.web.vo.param.MeetingCreateParamVo
 import org.bg181.kotlin.core.web.vo.param.MeetingUpdateParamVo
 import org.bg181.kotlin.core.web.vo.resp.MeetingVo
 import org.bg181.kotlin.dto.MeetingDto
-import org.bg181.kotlin.dto.base.PageResp
+import org.bg181.kotlin.support.definition.model.PageResp
 import org.mapstruct.AfterMapping
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping

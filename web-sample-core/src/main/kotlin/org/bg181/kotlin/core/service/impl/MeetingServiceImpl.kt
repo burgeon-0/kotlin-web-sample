@@ -8,9 +8,11 @@ import org.bg181.kotlin.core.dao.entity.Meeting
 import org.bg181.kotlin.core.service.converter.ServiceMeetingConverter
 import org.bg181.kotlin.core.web.converter.WebMeetingConverter
 import org.bg181.kotlin.dto.MeetingDto
-import org.bg181.kotlin.dto.base.PageParam
-import org.bg181.kotlin.dto.base.PageResp
 import org.bg181.kotlin.enums.MeetingStatus
+import org.bg181.kotlin.support.definition.exception.BaseErrorCode
+import org.bg181.kotlin.support.definition.exception.BusinessException
+import org.bg181.kotlin.support.definition.model.PageReq
+import org.bg181.kotlin.support.definition.model.PageResp
 import org.mapstruct.factory.Mappers
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -49,7 +51,7 @@ class MeetingServiceImpl : MeetingService {
         logger.info("UpdateMeeting => ${meetingDto}")
 
         val meetingId = meetingAdapter.getIdByMeetingNo(meetingDto.meetingNo!!.toLong())
-            ?: throw RuntimeException("meeting not found")
+            ?: throw BusinessException(BaseErrorCode.BAD_REQUEST, "meeting not found")
 
         val meeting = meetingConverter.toMeeting(meetingDto).apply {
             this.id = meetingId
@@ -67,19 +69,19 @@ class MeetingServiceImpl : MeetingService {
         meetingAdapter.removeByMeetingNo(meetingNo.toLong())
     }
 
-    override fun pageMeetings(pageParam: PageParam): PageResp<MeetingDto> {
-        logger.info("PageMeetings => ${pageParam}")
+    override fun pageMeetings(pageReq: PageReq): PageResp<MeetingDto> {
+        logger.info("PageMeetings => ${pageReq}")
 
         val pageResult = meetingAdapter.pageRecords(Page<Meeting>().apply {
-            this.current = pageParam.pageNo?.toLong()
-            this.size = pageParam.pageSize?.toLong()
+            this.current = pageReq.pageNo.toLong()
+            this.size = pageReq.pageSize.toLong()
         })
 
         return PageResp<MeetingDto>().apply {
-            this.pageNo = pageResult.current?.toInt()
-            this.pageSize = pageResult.size?.toInt()
-            this.total = pageResult.total?.toInt()
-            this.totalPage = pageResult.pages?.toInt()
+            this.pageNo = pageResult.current.toInt()
+            this.pageSize = pageResult.size.toInt()
+            this.total = pageResult.total.toInt()
+            this.totalPage = pageResult.pages.toInt()
             this.data = meetingConverter.toMeetingDtos(pageResult.records)
         }
     }

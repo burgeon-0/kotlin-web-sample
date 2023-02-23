@@ -19,10 +19,16 @@
     <description>Kotlin Web Sample Api</description>
 
     <dependencies>
+        <!-- kotlin web support -->
+        <dependency>
+            <groupId>org.bg181.kotlin</groupId>
+            <artifactId>support-definition</artifactId>
+        </dependency>
+
         <!-- kotlin -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <artifactId>kotlin-stdlib</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
