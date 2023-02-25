@@ -24,11 +24,10 @@
 
     <properties>
         <!-- kotlin web support -->
+        <support-common.version>1.0.0</support-common.version>
         <support-definition.version>1.0.0</support-definition.version>
         <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
         <support-rest.version>1.0.0</support-rest.version>
-        <!-- dependencies -->
-        <hutool.version>5.8.12</hutool.version>
     </properties>
 
     <repositories>
@@ -50,6 +49,11 @@
             </dependency>
 
             <!-- kotlin web support -->
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-common</artifactId>
+                <version>${support-common.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>support-definition</artifactId>
@@ -76,13 +80,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-test-junit</artifactId>
                 <version>${kotlin.version}</version>
-            </dependency>
-
-            <!-- hutool -->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
