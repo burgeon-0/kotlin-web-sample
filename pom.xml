@@ -19,7 +19,7 @@
 
     <modules>
         <module>web-sample-api</module>
-        <module>web-sample-core</module>
+        <module>web-sample-server</module>
     </modules>
 
     <properties>
