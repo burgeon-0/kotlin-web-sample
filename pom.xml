@@ -20,6 +20,7 @@
     <modules>
         <module>web-sample-api</module>
         <module>web-sample-server</module>
+        <module>web-sample-ui</module>
     </modules>
 
     <properties>
@@ -28,6 +29,7 @@
         <support-definition.version>1.0.0</support-definition.version>
         <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
         <support-rest.version>1.0.0</support-rest.version>
+        <support-ui.version>1.0.0</support-ui.version>
     </properties>
 
     <repositories>
@@ -45,6 +47,11 @@
             <dependency>
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>web-sample-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>web-sample-server</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
@@ -68,6 +75,11 @@
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>support-rest</artifactId>
                 <version>${support-rest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-ui</artifactId>
+                <version>${support-ui.version}</version>
             </dependency>
 
             <!-- kotlin -->
