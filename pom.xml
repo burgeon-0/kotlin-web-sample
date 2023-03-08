@@ -30,6 +30,7 @@
         <support-mybatis-plus.version>1.0.0</support-mybatis-plus.version>
         <support-rest.version>1.0.0</support-rest.version>
         <support-ui.version>1.0.0</support-ui.version>
+        <support-xxl-job.version>1.0.0</support-xxl-job.version>
     </properties>
 
     <repositories>
@@ -80,6 +81,11 @@
                 <groupId>org.bg181.kotlin</groupId>
                 <artifactId>support-ui</artifactId>
                 <version>${support-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bg181.kotlin</groupId>
+                <artifactId>support-xxl-job</artifactId>
+                <version>${support-xxl-job.version}</version>
             </dependency>
 
             <!-- kotlin -->
