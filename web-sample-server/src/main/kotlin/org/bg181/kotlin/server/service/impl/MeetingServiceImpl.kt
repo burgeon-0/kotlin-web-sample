@@ -2,12 +2,13 @@ package org.bg181.kotlin.server.service.impl
 
 import cn.hutool.core.util.IdUtil
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
+import org.apache.dubbo.config.annotation.DubboService
 import org.bg181.kotlin.api.MeetingService
+import org.bg181.kotlin.dto.MeetingDto
+import org.bg181.kotlin.enums.MeetingStatus
 import org.bg181.kotlin.server.dao.adapter.MeetingAdapter
 import org.bg181.kotlin.server.dao.entity.Meeting
 import org.bg181.kotlin.server.service.converter.ServiceMeetingConverter
-import org.bg181.kotlin.dto.MeetingDto
-import org.bg181.kotlin.enums.MeetingStatus
 import org.bg181.kotlin.support.definition.exception.BaseErrorCode
 import org.bg181.kotlin.support.definition.exception.BusinessException
 import org.bg181.kotlin.support.definition.model.PageReq
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service
  * @author Sam Lu
  * @date 2023/02/04
  */
+@DubboService
 @Service
 class MeetingServiceImpl : MeetingService {
 

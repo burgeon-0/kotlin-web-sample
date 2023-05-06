@@ -1,5 +1,6 @@
 package org.bg181.kotlin.server
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo
 import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
  */
 @SpringBootApplication
 @MapperScan("org.bg181.kotlin.server.dao.mapper")
+@EnableDubbo
 class ServerApplication
 
 fun main(args: Array<String>) {
